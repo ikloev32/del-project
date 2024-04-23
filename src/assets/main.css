@@ -1,0 +1,11 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import './base.css';
+
+#app {
+  font-family: 'Nanum Gothic', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  position: relative;
+  box-sizing: border-box;
+}
