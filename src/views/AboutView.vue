@@ -58,8 +58,8 @@ const setAudio = (src:string) => {
 }
 const init = () => {
   setText("...", "...")
-  setBG("/del-project/public/K-1.png")
-  setAudio("/del-project/public/audio/Bird.mp3")
+  setBG("/del-project/K-1.png")
+  setAudio("/del-project/audio/Bird.mp3")
   setText("...", "아침에 자고 일어난 윌동, 무언가 기시감을 느낀다.")
   setText("...", "자신의 아랫도리가 묵직한 것을 느끼고… 황급히 화장실로 간 그(녀였음)은 \n 그토록 바라던 남성이 되었음을 알게 된다.")
   setText("...", "기쁜 마음에 델리만쥬 전문점으로 달려가 사람들을 찾는 윌동. 그런데 어쩐지 모두의 상태가 이상하다?")
@@ -71,7 +71,7 @@ const init = () => {
 }
 
 onMounted(() => {
-  // const audio = new Audio('/del-project/public/audio/Bird.mp3');
+  // const audio = new Audio('/del-project/audio/Bird.mp3');
   // audio.play();
 
   init()
