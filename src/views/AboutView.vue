@@ -10,15 +10,12 @@
     <div class="marker">▼</div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { nextTick, onMounted, ref } from 'vue';
 const sinarioIndex = ref(0)
-const sinario = ref([])
-const bgImg = ref(null)
-const audioSrc = ref(null)
-const audioRef = ref(null)
-const audioRefBtn = ref(null)
-const textBox = ref(null)
+const sinario = ref<Function[]>([])
+const bgImg = ref<string | null>(null)
+const textBox = ref<any>(null)
 
 const next = () => {
   if (sinario.value.length <= sinarioIndex.value) {
@@ -28,7 +25,7 @@ const next = () => {
   sinarioIndex.value++
 }
 
-const setText = (name, msg, option) => {
+const setText = (name: string, msg: string) => {
   const eventFunction = () => {
     textBox.value = {
       name,
@@ -37,7 +34,7 @@ const setText = (name, msg, option) => {
   }
   sinario.value.push(eventFunction)
 }
-const setBG = (src) => {
+const setBG = (src:string) => {
   const eventFunction = () => {
     bgImg.value = src
     nextTick(() => {
@@ -46,7 +43,7 @@ const setBG = (src) => {
   }
   sinario.value.push(eventFunction)
 }
-const setAudio = src => {
+const setAudio = (src:string) => {
   const eventFunction = () => {
     // audioSrc.value = src
     // audioRef.value.play()
