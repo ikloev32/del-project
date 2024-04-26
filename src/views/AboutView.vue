@@ -1,82 +1,41 @@
 <template>
-  <div class="bg-box"><img v-if="bgImg" :src="bgImg"></div>
-  <div id="text-box" v-if="textBox !== null" @click="next">
+  <div class="bg-box"><img v-if="bgImgSrc" :src="bgImgSrc"></div>
+  <div id="text-box" v-if="textboxVisable" @click="nextEvent">
     <div id="name">
       <div class="name-box">
-        {{ textBox.name }}
+        {{ textName }}
       </div>
     </div>
-    <div class="txt">{{ textBox.msg }}</div>
+    <div class="txt">{{ textScript }}</div>
     <div class="marker">▼</div>
   </div>
 </template>
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from 'vue';
-const sinarioIndex = ref(0)
-const sinario = ref<Function[]>([])
-const bgImg = ref<string | null>(null)
-const textBox = ref<any>(null)
+import { onMounted } from 'vue';
+import { useScenario } from '@/module/App';
 
-const next = () => {
-  if (sinario.value.length <= sinarioIndex.value) {
-    return
-  }
-  sinario.value[sinarioIndex.value]()
-  sinarioIndex.value++
-}
-
-const setText = (name: string, msg: string) => {
-  const eventFunction = () => {
-    textBox.value = {
-      name,
-      msg
-    }
-  }
-  sinario.value.push(eventFunction)
-}
-const setBG = (src:string) => {
-  const eventFunction = () => {
-    bgImg.value = src
-    nextTick(() => {
-      next()
-    })
-  }
-  sinario.value.push(eventFunction)
-}
-const setAudio = (src:string) => {
-  const eventFunction = () => {
-    // audioSrc.value = src
-    // audioRef.value.play()
-    const audio = new Audio(src);
-    audio.play();
-    nextTick(() => {
-      next()
-    })
-
-  }
-  sinario.value.push(eventFunction)
-}
-const init = () => {
-  setText("...", "...")
-  setBG("/del-project/K-1.png")
-  setAudio("/del-project/audio/Bird.mp3")
-  setText("...", "아침에 자고 일어난 윌동, 무언가 기시감을 느낀다.")
-  setText("...", "자신의 아랫도리가 묵직한 것을 느끼고… 황급히 화장실로 간 그(녀였음)은 \n 그토록 바라던 남성이 되었음을 알게 된다.")
-  setText("...", "기쁜 마음에 델리만쥬 전문점으로 달려가 사람들을 찾는 윌동. 그런데 어쩐지 모두의 상태가 이상하다?")
-  setText("...", "무언가 이상함을 느끼는 윌동에게 가장 먼저 말을 건 것은 미미, 근데 윌동이 알던 미미가 아닌 것 같은데…")
-  next()
-  // setTimeout(() => {
-  //   next()
-  // }, 1000);
-}
+const {
+  textName,
+  textScript,
+  bgImgSrc,
+  textboxVisable,
+  startChapter,
+  addChpter,
+  nextEvent,
+  createChapter
+} = useScenario()
 
 onMounted(() => {
-  // const audio = new Audio('/del-project/audio/Bird.mp3');
-  // audio.play();
+  const chapter1 = createChapter()
+    .addTextEvents('윌동', '평화로운 아침이다. 아, 윌리엄에게 박고 싶은 하루의 시작이구나.')
+    .addTextEvents('윌동', '음? 뭔가 아랫도리가 이상한데…')
+    .addTextEvents('윌동', '기시감이 느껴져 이불을 들추자, 남산이 솟아나 나를 반기고 있었다.')
+    .addTextEvents('윌동', '이, 이건…!! 남근(男根)!?')
+    .addTextEvents('윌동', '내가 드디어 남자가 된 건가? 드디어…?! 그토록 바래오던…!!')
+    .addTextEvents('윌동', '우, 우오오옷…!! (화면 진동) 당장 이 사실을 사람들에게 알려야겠어…!! ')
 
-  init()
-
-
+  addChpter(chapter1)
+  startChapter()
 })
 </script>
 
