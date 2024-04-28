@@ -7,8 +7,8 @@ export function useScenario() {
   const chapterIndex = ref(0)
   const textboxVisable = ref<boolean>(true)
   const textName = ref<String | null>(null)
-  const textScript = ref<String | null>(null)
-  const bgImgSrc = ref(null)
+  const textScript = ref<String>('')
+  const bgImgSrc = ref('/del-project/K-1.png')
   const audioSrc = ref(null)
 
 
@@ -18,7 +18,6 @@ export function useScenario() {
   }
   const nextEvent = () => {
     const isNotEnd = chapterList.value[chapterIndex.value]?.next()
-    console.log(isNotEnd)
     if (isNotEnd) {
 
     } else {
@@ -34,12 +33,9 @@ export function useScenario() {
       textboxVisable,
       textName,
       textScript,
-      bgImgSrc,
-      audioSrc
+      bgImgSrc
     })
   }
-
-  // 관리 상태를 반환 값으로 노출
 
   return { textName, textScript, bgImgSrc, textboxVisable, audioSrc, createChapter, addChpter, nextEvent, startChapter }
 }
