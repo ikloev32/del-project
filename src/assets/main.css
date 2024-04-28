@@ -8,4 +8,62 @@
   background: #000;
   position: relative;
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+strong {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translate(3px, 3px)
+  }
+
+  10% {
+    transform: translate(-3px, -3px)
+  }
+
+  20% {
+    transform: translate(-3px, 3px)
+  }
+
+  30% {
+    transform: translate(3px, 3px)
+  }
+
+  40% {
+    transform: translate(-3px, 3px)
+  }
+
+  50% {
+    transform: translate(3px, -3px)
+  }
+
+  60% {
+    transform: translate(3px, 3px)
+  }
+
+  70% {
+    transform: translate(-3px, 3px)
+  }
+
+  80% {
+    transform: translate(3px, -3px)
+  }
+
+  90% {
+    transform: translate(-3px, 3px)
+  }
+
+  100% {
+    transform: translate(3px, 3px)
+  }
+}
+
+.bg-box.vibration {
+  box-shadow: 0 0 3px 3px rgba(0, 140, 186, 0.5);
+  animation: shake 1s;
 }

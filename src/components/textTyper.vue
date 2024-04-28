@@ -11,11 +11,12 @@ const props = defineProps({
     required: true
   }
 })
+
 const msg = ref('')
 const minTime = 100
+
 let i = 0;
 const ViewText = () => {
-
   if (i < props.text.length) {
     msg.value += props.text.charAt(i);
     i++;
@@ -30,11 +31,6 @@ watch(props, () => {
 })
 </script>
 <style scoped>
-strong {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
 .txt {
   min-height: 1.5rem;
 }

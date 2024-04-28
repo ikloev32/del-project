@@ -5,14 +5,14 @@ type Props = {
   textName: Ref<String | null>,
   textScript: Ref<String>,
   bgImgSrc: Ref<String | null>,
-
+  effectClass: Ref<String>
 }
 class Chapter {
   textboxVisable: Ref<boolean>
   textName: Ref<String | null>
   textScript: Ref<String>
   bgImgSrc: Ref<String | null>
-
+  effectClass: Ref<String>
 
   sinarioList: Function[] = []
   sinarioIndex: number = 0
@@ -23,12 +23,14 @@ class Chapter {
     textboxVisable,
     textName,
     textScript,
-    bgImgSrc
+    bgImgSrc,
+    effectClass
   }: Props) {
     this.textboxVisable = textboxVisable
     this.textName = textName
     this.textScript = textScript
     this.bgImgSrc = bgImgSrc
+    this.effectClass = effectClass
   }
 
   addSinarioEvents(sinario: any) {
@@ -37,13 +39,22 @@ class Chapter {
   }
 
   setTextboxVisable(visable: boolean) {
-
     this.textboxVisable.value = visable
+    return this
+  }
+
+  setEffectClass(effectClass: string) {
+    this.sinarioList.push(() => {
+      this.effectClass.value = effectClass
+      nextTick(() => {
+        this.next()
+      })
+    })
 
     return this
   }
 
-  addTextEvents(name: String | null, msg: String | null) {
+  addTextEvents(name: String | null, msg: String) {
     this.sinarioList.push(() => {
       this.textName.value = name
       this.textScript.value = msg

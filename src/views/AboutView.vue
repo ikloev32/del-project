@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-box"><img v-if="bgImgSrc" :src="bgImgSrc"></div>
+  <div class="bg-box" :class="effectClass"><img v-if="bgImgSrc" :src="bgImgSrc"></div>
   <div id="text-box" v-if="textboxVisable" @click="nextEvent">
     <div id="name">
       <div class="name-box">
@@ -22,6 +22,7 @@ const {
   textScript,
   bgImgSrc,
   textboxVisable,
+  effectClass,
   startChapter,
   addChpter,
   nextEvent,
@@ -34,9 +35,10 @@ onMounted(() => {
     .addTextEvents('윌동', '평화로운 아침이다. 아, 윌리엄에게 박고 싶은 하루의 시작이구나.')
     .addTextEvents('윌동', '음? 뭔가 아랫도리가 이상한데…')
     .addTextEvents('윌동', '기시감이 느껴져 이불을 들추자, 남산이 솟아나 나를 반기고 있었다.')
-    .addTextEvents('윌동', '이, 이건…!! <strong>남근(男根)</strong>!?')
+    .setEffectClass('vibration')
+    .addTextEvents('윌동', '이, 이건…!! <strong class="asd">남근(男根)</strong>!?')
     .addTextEvents('윌동', '내가 드디어 남자가 된 건가? 드디어…?! 그토록 바래오던…!!')
-    .addTextEvents('윌동', '우, 우오오옷…!! (화면 진동) 당장 이 사실을 사람들에게 알려야겠어…!! ')
+    .addTextEvents('윌동', '우, 우오오옷…!! 당장 이 사실을 사람들에게 알려야겠어…!! ')
 
   addChpter(chapter1)
 
@@ -50,6 +52,7 @@ onMounted(() => {
   height: 100%;
   position: absolute;
   overflow: hidden;
+  background-color: #000;
 }
 
 .bg-box>img {

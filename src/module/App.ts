@@ -10,8 +10,7 @@ export function useScenario() {
   const textScript = ref<String>('')
   const bgImgSrc = ref('/del-project/K-1.png')
   const audioSrc = ref(null)
-
-
+  const effectClass = ref('')
   const addChpter = (chapter: Chapter) => {
     chapterList.value.push(chapter)
     return chapter
@@ -33,9 +32,10 @@ export function useScenario() {
       textboxVisable,
       textName,
       textScript,
-      bgImgSrc
+      bgImgSrc,
+      effectClass
     })
   }
 
-  return { textName, textScript, bgImgSrc, textboxVisable, audioSrc, createChapter, addChpter, nextEvent, startChapter }
+  return { textName, textScript, bgImgSrc, textboxVisable, audioSrc, effectClass, createChapter, addChpter, nextEvent, startChapter }
 }
