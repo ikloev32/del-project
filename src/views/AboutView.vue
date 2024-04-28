@@ -7,7 +7,7 @@
       </div>
     </div>
     <!-- <div class="txt" v-html="textScript"></div>-->
-    <textTyper :text="textScript || ''" />
+    <textTyper :text="textScript" />
     <!-- <VueTyper class="txt" text='Hello World! I was registered locally!'></VueTyper> -->
     <div class="marker">▼</div>
   </div>
