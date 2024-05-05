@@ -32,6 +32,7 @@ watch(props, () => {
 </script>
 <style scoped>
 .txt {
-  min-height: 1.5rem;
+  min-height: 3rem;
+  line-height: 3rem;
 }
 </style>

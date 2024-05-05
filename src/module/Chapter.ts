@@ -5,6 +5,7 @@ type Props = {
   textName: Ref<String | null>,
   textScript: Ref<String>,
   bgImgSrc: Ref<String | null>,
+  charcterSrc: Ref<String>,
   effectClass: Ref<String>
 }
 class Chapter {
@@ -12,6 +13,7 @@ class Chapter {
   textName: Ref<String | null>
   textScript: Ref<String>
   bgImgSrc: Ref<String | null>
+  charcterSrc: Ref<String>
   effectClass: Ref<String>
 
   sinarioList: Function[] = []
@@ -24,15 +26,25 @@ class Chapter {
     textName,
     textScript,
     bgImgSrc,
+    charcterSrc,
     effectClass
   }: Props) {
     this.textboxVisable = textboxVisable
     this.textName = textName
     this.textScript = textScript
     this.bgImgSrc = bgImgSrc
+    this.charcterSrc = charcterSrc
     this.effectClass = effectClass
   }
+  init() {
+    this.textboxVisable.value = false
+    this.textName.value = null
+    this.textScript.value = ''
+    this.bgImgSrc.value = ''
+    this.effectClass.value = ''
 
+    return this
+  }
   addSinarioEvents(sinario: any) {
     this.sinarioList.push(sinario)
     return this
@@ -46,6 +58,16 @@ class Chapter {
   setEffectClass(effectClass: string) {
     this.sinarioList.push(() => {
       this.effectClass.value = effectClass
+      nextTick(() => {
+        this.next()
+      })
+    })
+
+    return this
+  }
+  setCharcterSrc(charcterSrc: string) {
+    this.sinarioList.push(() => {
+      this.charcterSrc.value = charcterSrc
       nextTick(() => {
         this.next()
       })
@@ -74,6 +96,16 @@ class Chapter {
     return this
   }
 
+  addBGSrc(src: string) {
+    this.sinarioList.push(() => {
+      this.bgImgSrc.value = src
+      nextTick(() => {
+        this.next()
+      })
+
+    })
+    return this
+  }
   next() {
     if (this.sinarioIndex <= this.sinarioList.length - 1) {
       this.sinarioList[this.sinarioIndex].call(this)
